@@ -6,6 +6,15 @@
 Welcome to CTS-ircdeploy's documentation!
 =========================================
 
+This project contains the `CTS`_ deployment architecture for the 
+`International Rescue Committee (IRC)`_. To explore other open source IRC
+projects, please see our `GitHub`_ account.
+
+.. _CTS: https://github.com/theirc/CTS
+.. _International Rescue Committee (IRC): http://www.rescue.org/
+.. _GitHub: https://github.com/theirc
+
+
 Contents:
 
 .. toctree::
