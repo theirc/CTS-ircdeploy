@@ -1,6 +1,13 @@
 CTS-ircdeploy
 ========================
 
+.. image:: https://readthedocs.org/projects/cts-ircdeploy/badge/?version=latest
+  :target: https://readthedocs.org/projects/cts-ircdeploy/?badge=latest
+  :alt: Documentation Status
+
+This project contains the `CTS`_ deployment architecture for the 
+`International Rescue Committee (IRC)`_.
+
 Below you will find basic setup and deployment instructions for the CTS-
 ircdeploy project. To begin you should have the following applications
 installed on your local development system:
@@ -23,3 +30,9 @@ necessary requirements::
 
     mkvirtualenv cts-ircdeploy
     $VIRTUAL_ENV/bin/pip install -r $PWD/requirements.txt
+
+Please see the `documentation`_ for more information.
+
+.. _documentation: http://cts-ircdeploy.readthedocs.org/en/latest/
+.. _CTS: https://github.com/theirc/CTS
+.. _International Rescue Committee (IRC): http://www.rescue.org/
