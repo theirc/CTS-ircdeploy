@@ -3,7 +3,7 @@ CTS-ircdeploy
 
 Below you will find basic setup and deployment instructions for the CTS-
 ircdeploy project. To begin you should have the following applications
-installed on your local development system::
+installed on your local development system:
 
 - Python = 2.7.*
 - `pip >= 1.1 <http://www.pip-installer.org/>`_
