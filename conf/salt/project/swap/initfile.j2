@@ -1,0 +1,55 @@
+#!/bin/sh -e
+# See http://www.debian.org/doc/debian-policy/ch-opersys.html#s-sysvinit
+
+### BEGIN INIT INFO
+# Provides:          ec2_swap
+# Required-Start:
+# Required-Stop:
+# Should-Start:
+# Should-Stop:
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Enable swap on EC2 device
+# Description:       This script turns on swap on the EC2 disk that needs to
+#                    be 'mkswapped' on every boot because it's ephemeral.
+### END INIT INFO
+
+
+DEVICE={{ DEVICE }}
+
+PATH="/sbin:/bin:/usr/sbin:/usr/bin"
+
+
+swap_in_use () {
+    swapon -s | grep --quiet $DEVICE
+}
+enable_swap () {
+    if [ -e $DEVICE ] ; then
+      echo -n "Enabling swap on $DEVICE..."
+      mkswap $DEVICE
+      swapon $DEVICE
+      echo "Done"
+    else
+      echo "Device not found for swapping: $DEVICE"
+      exit 1
+    fi
+}
+disable_swap () {
+    echo -n "Disabling swap on $DEVICE..."
+    swapoff $DEVICE
+    echo "done"
+}
+
+case "$1" in
+start)
+    swap_in_use || enable_swap
+    ;;
+stop)
+    swap_in_use && disable_swap
+    ;;
+*)
+    echo "Usage: /etc/init.d/ec2_swap {start|stop}"
+    exit 1
+    ;;
+esac
+exit 0
