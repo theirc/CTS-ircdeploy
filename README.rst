@@ -2,7 +2,7 @@ CTS-ircdeploy
 ========================
 
 .. image:: https://readthedocs.org/projects/cts-ircdeploy/badge/?version=latest
-  :target: https://readthedocs.org/projects/cts-ircdeploy/?badge=latest
+  :target: http://cts-ircdeploy.readthedocs.org/en/latest/
   :alt: Documentation Status
 
 This project contains the deployment architecture used by the 
