@@ -45,7 +45,7 @@ Running a deploy does several things:
    basically mean everything in the git repository that is
    outside of the `conf` directory.)
 
-#. Run the usual Django deploy-time commmands such as `collectstatic` and
+#. Run the usual Django deploy-time commands such as `collectstatic` and
    `syncdb --migrate`.
 
 #. Restart the servers

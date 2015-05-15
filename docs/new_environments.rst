@@ -67,7 +67,7 @@ at ``cts-testing.caktusgroup.com``.
 #. Edit the fabfile (`fabfile.py` in the top directory).
    Create a new task near the top, modeled
    on the existing tasks like 'production'.  Fill in
-   the new servers's hostname or IP address.  Like this::
+   the new server's hostname or IP address.  Like this::
 
         @task
         def testing():
@@ -100,7 +100,7 @@ at ``cts-testing.caktusgroup.com``.
           url: git@github.com:theirc/CTS.git
           branch: origin/develop
 
-        # Addtional public environment variables to set for the project
+        # Additional public environment variables to set for the project
         env:
           FOO: BAR
 

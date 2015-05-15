@@ -46,7 +46,7 @@ Incoming HTTP requests are received by the Nginx web server.
 for CTS.
 
 Nginx serves static files itself, and routes dynamic requests to
-the approprate backend processes.  It uses the request URL path
+the appropriate backend processes.  It uses the request URL path
 to determine how to handle each request.
 
 Nginx is started by an init.d script. There is only one
@@ -101,7 +101,7 @@ Only one logical Supervisor process runs on a server.
 Rabbit MQ
 ~~~~~~~~~
 
-Rabbit MQ provides reliable asynchronous message queueing among
+Rabbit MQ provides reliable asynchronous message queuing among
 Celery's processes.
 
 Rabbit MQ is started by an init.d script.

@@ -56,7 +56,7 @@ completely independent data. Each copy is called an `instance`.
 All the instances on a server are running the same code, but they
 run in different processes and use different databases.
 
-An nginx server receives incoming requests and routes them to the
+An Nginx server receives incoming requests and routes them to the
 appropriate instance based on the first part of the URL path.  E.g.
 ``https://cts.rescue.org/IQ/`` might go to an instance for Iraq, while
 ``https://cts.rescue.org/TR/`` might go to an instance for Turkey.
