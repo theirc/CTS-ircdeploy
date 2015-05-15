@@ -1,8 +1,7 @@
 Getting Started
 ===============
 
-This is a step-by-step guide to start administering IRC's already deployed CTS
-servers.
+This is a step-by-step guide to start administering IRC's CTS servers.
 
 #. Clone the git repository::
 

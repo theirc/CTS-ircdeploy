@@ -5,7 +5,7 @@ Ona Support
 Overview
 ------------------------
 
-Cts utilizes Ona to capture mobile form data. The web application communicates
+CTS utilizes Ona to capture mobile form data. The web application communicates
 with Ona via its `REST API <https://ona.io/api/v1/>`_.
 
 Ona Secrets

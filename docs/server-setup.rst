@@ -1,8 +1,9 @@
-Server Setup
-=============
+Server Setup Reference
+======================
 
 This is a detailed description of how a server ends up
 configured by the CTS provisioning process.
+
 
 Files
 -----
@@ -32,8 +33,10 @@ Configuration files are updated in::
     /etc/rabbitmq
     /etc/supervisor
 
+
 Processes
 ---------
+
 
 Nginx
 ~~~~~~
@@ -50,6 +53,7 @@ Nginx is started by an init.d script. There is only one
 logical nginx running on a server, though it might consist
 of a master process and multiple worker processes.
 
+
 Gunicorn
 ~~~~~~~~
 
@@ -61,6 +65,7 @@ Gunicorn processes are managed by Supervisord.
 
 For each CTS instance, there will be one or more Gunicorn
 processes running on the server.
+
 
 Celery
 ~~~~~~
@@ -75,6 +80,7 @@ process is like `cron`: it schedules tasks at certain times. An
 instance only has one beat process.
 
 Celery processes are managed by Supervisord.
+
 
 Supervisor
 ~~~~~~~~~~
@@ -91,6 +97,7 @@ Supervisor itself is started by an init.d script.
 
 Only one logical Supervisor process runs on a server.
 
+
 Rabbit MQ
 ~~~~~~~~~
 
@@ -100,6 +107,7 @@ Celery's processes.
 Rabbit MQ is started by an init.d script.
 
 Only one logical Rabbit MQ runs on a server.
+
 
 Postgres
 ~~~~~~~~

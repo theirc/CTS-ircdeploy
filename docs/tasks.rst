@@ -1,5 +1,5 @@
-Administration Tasks
-====================
+Common Administration Tasks
+===========================
 
 Here are some common tasks and how to perform them.
 
@@ -32,7 +32,7 @@ Running a deploy does several things:
 
 #. Ensure system and Python packages are installed, configuration files are
    correct, and generally check and update the provisioning on the server.
-   This uses `Salt <https://salt.readthedocs.org/en/latest/>`.
+   This uses `Salt <https://salt.readthedocs.org/en/latest/>`_.
 
 #. Sync all the configuration files under `conf` from your local system
    to the server. This makes it easier to test deploy changes without having
@@ -66,15 +66,10 @@ or "dbshell", you can use a command from your local system like::
 
 Note that you have to pick an instance.
 
-Ssh to the server
+
+SSH to the server
 -----------------
 
 There's a shortcut for this::
 
   fab staging ssh
-
-Set up a new server from scratch
----------------------------------
-
-See :doc:`creating a new server <new_aws_server>`.
-

@@ -1,28 +1,37 @@
 Overview
 ========
 
-This is an overview of how CTS v3 is deployed.
+This is an overview of how CTS is deployed.
 
-Servers and environments
-------------------------
+
+Server Architecture
+-------------------
+
+CTS is deployed on the following stack using `Fabric`_ and `SaltStack`_:
+
+- OS: Ubuntu 12.04 LTS
+- Python: 2.7
+- Database: Postgres 9.1
+- Application Server: Gunicorn
+- Frontend Server: Nginx
+- Cache: Memcached
 
 Deploys are done to a single server, which will serve all
 the CTS instances under one domain name using URL prefixing.
 
-For development and test purposes, CTS v3 can be deployed to
-servers other than production. These are called "environments",
-and there are three defined initially:
+For development and test purposes, CTS can be deployed to
+servers other than production. These are called **environments**,
+and there are two defined initially:
 
-* vagrant
 * staging
 * production
 
-The `fab` commands used to deploy and provision a server always
+The ``fab`` commands used to deploy and provision a server always
 take an environment name as the first argument, e.g.
 ``fab staging do_something``.
 
 When deploying to a server, the code is deployed from a branch
-of the code repository on github. Which branch is used is controlled by
+of the code repository on GitHub. Which branch is used is controlled by
 a setting in the local file ``conf/pillar/<ENVIRONMENT>/env.sls``,
 e.g. ``conf/pillar/staging/env.sls`` might contain::
 
@@ -37,8 +46,9 @@ e.g. ``conf/pillar/staging/env.sls`` might contain::
 This indicates that the staging server will use the code
 from the ``origin/develop`` branch.
 
-Instances
----------
+
+Country Instances
+-----------------
 
 On a server, there can be multiple copies of CTS running, each with
 completely independent data. Each copy is called an `instance`.
@@ -90,22 +100,14 @@ that are unique for that instance. See the existing files, such as ``cts/setting
 to see what needs to be in the instance's settings file.  (Actually, very little
 needs to be in there.)
 
-The software
-------------
 
-CTS is deployed on the following stack.
-
-- OS: Ubuntu 12.04 LTS
-- Python: 2.7
-- Database: Postgres 9.1
-- Application Server: Gunicorn
-- Frontend Server: Nginx
-- Cache: Memcached
-
-
-In development
----------------
+Local Development
+-----------------
 
 When running locally (e.g. ``django-admin.py runserver``), the environment name
 is ``dev`` and there's only one instance, ``local``, with no URL prefix. Since there's
 no prefix, it should work the way developers are used to.
+
+
+.. _Fabric: http://docs.fabfile.org/en/latest/
+.. _SaltStack: http://docs.saltstack.com/en/latest/

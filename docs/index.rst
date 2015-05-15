@@ -6,9 +6,13 @@
 Welcome to CTS-ircdeploy's documentation!
 =========================================
 
-This project contains the `CTS`_ deployment architecture for the 
-`International Rescue Committee (IRC)`_. To explore other open source IRC
-projects, please see our `GitHub`_ account.
+.. image:: _static/logo.gif
+
+This project contains the deployment architecture used by the 
+`International Rescue Committee (IRC)`_ for the `CTS`_ project. While this 
+repository specific to IRC's instance of CTS, the architecture may be used 
+an example or reference for alternative deployments. To explore other open 
+source IRC projects, please see IRC's `GitHub`_ account.
 
 The purpose of this documentation is to help system administrators
 deploy and maintain CTS. A certain level of knowledge of Linux is
@@ -25,12 +29,11 @@ Contents:
    :maxdepth: 1
 
    overview
+   server-setup
    starting
    tasks
-   environments
-   new_aws_server
+   new_environments
    ona
-   server-setup
    backups
    db_access
 
