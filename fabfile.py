@@ -22,7 +22,7 @@ project_sls_file = os.path.join(CONF_ROOT, 'pillar', 'project.sls')
 projects = yaml.safe_load(open(project_sls_file, 'r'))
 
 
-SERVER_ENVIRONMENTS = ['staging', 'production', 'vagrant', 'testing']
+SERVER_ENVIRONMENTS = ['staging', 'production', 'testing']
 INSTANCES = projects['instances'].keys()  # e.g. 'iraq', 'turkey'
 
 
@@ -44,15 +44,6 @@ def production():
     # This hostname for our own use to connect to the server to manage it.
     # IRC might choose to use whatever domain they want for the web site.
     env.hosts = ['cts.rescue.org']
-
-
-@task
-def vagrant():
-    env.environment = 'vagrant'
-    # env.user = 'vagrant'
-    vagrant_version = local('vagrant -v', capture=True).split()[-1]
-    env.key_filename = '/opt/vagrant/embedded/gems/gems/vagrant-%s/keys/vagrant' % vagrant_version
-    env.hosts = ['33.33.33.10']
 
 
 @task

@@ -77,11 +77,11 @@ at ``cts-testing.caktusgroup.com``.
 
 #. In the fabfile, add the new environment to ``SERVER_ENVIRONMENTS`` near the top::
 
-    SERVER_ENVIRONMENTS = ['staging', 'production', 'vagrant', 'testing']
+    SERVER_ENVIRONMENTS = ['staging', 'production', 'testing']
 
 #. In ``conf/pillar/top.sls``, add the new environment to the list::
 
-        {% for env in ['staging', 'production', 'vagrant', 'testing'] %}
+        {% for env in ['staging', 'production', 'testing'] %}
 
 #. Under the ``conf/pillar`` directory, create a new directory
    with the same name as your new environment.  Copy the ``env.sls`` and

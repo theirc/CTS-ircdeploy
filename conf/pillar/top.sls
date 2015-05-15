@@ -5,7 +5,7 @@ base:
   'environment:local':
     - match: grain
     - local
-{% for env in ['staging', 'production', 'vagrant', 'testing'] %}
+{% for env in ['staging', 'production', 'testing'] %}
   'environment:{{ env }}':
     - match: grain
     - {{ env }}.env

@@ -21,5 +21,3 @@ base:
     - project.cache
     - project.swap
     - django-dbbackup
-  'precise32':
-    - vagrant.user
