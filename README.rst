@@ -8,7 +8,7 @@ CTS-ircdeploy
 This project contains the deployment architecture used by the 
 `International Rescue Committee (IRC)`_ for the `CTS`_ project. While this 
 repository is specific to IRC's instance of CTS, the architecture may be used 
-an example or reference for alternative deployments.
+as an example or reference for alternative deployments.
 
 Below you will find basic setup and deployment instructions for the CTS-
 ircdeploy project. To begin you should have the following applications
