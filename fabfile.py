@@ -29,21 +29,19 @@ INSTANCES = projects['instances'].keys()  # e.g. 'iraq', 'turkey'
 @task
 def testing():
     env.environment = 'testing'
-    env.hosts = ['ec2-54-146-90-35.compute-1.amazonaws.com']
+    env.hosts = ['cts-testing.example.com']
 
 
 @task
 def staging():
     env.environment = 'staging'
-    env.hosts = ['cts-staging.rescue.org']
+    env.hosts = ['cts-staging.example.com']
 
 
 @task
 def production():
     env.environment = 'production'
-    # This hostname for our own use to connect to the server to manage it.
-    # IRC might choose to use whatever domain they want for the web site.
-    env.hosts = ['cts.rescue.org']
+    env.hosts = ['cts.example.com']
 
 
 @task
@@ -52,7 +50,7 @@ def instance(name):
     if name not in INSTANCES:
         abort("%s is not a valid instance; instances are %s" % (name, INSTANCES))
     env.instance = name
-    # If these lines change, change conf/salt/project/db/init_sls
+    # If these lines change, change conf/salt/project/db/init.sls
     # and cts/settings/staging.py.
     env.db_name = 'cts_%s' % env.instance
     env.db_owner = 'cts_%s' % env.instance

@@ -19,8 +19,7 @@ a new server, to be referred to as the ``testing`` environment.
    a light-gray selector on a black background.)
  * Use an AMI (image) of Ubuntu 12.04 server, 64-bit, EBS - e.g. ubuntu-precise-12.04-amd64-server-20140408 (ami-d1f308a6)
  * Be sure to save the private key that is created, or use
-   an existing one you already own. (Caktus: key pairs are stored
-   in LastPass, search for CTS.) The AWS private key is only
+   an existing one you already own.  The AWS private key is only
    needed until CTS has been deployed the first time, but it
    is essential until then.
 
@@ -62,7 +61,7 @@ to multiple places in the CTS configuration files.
 
 For the purposes of this documentation, we'll assume we're adding
 a new environment named ``testing``, which will be accessed
-at ``cts-testing.caktusgroup.com``.
+at ``cts-testing.example.com``.
 
 #. Edit the fabfile (`fabfile.py` in the top directory).
    Create a new task near the top, modeled
@@ -72,7 +71,7 @@ at ``cts-testing.caktusgroup.com``.
         @task
         def testing():
             env.environment = 'testing'
-            env.hosts = ['cts-testing.caktusgroup.com']
+            env.hosts = ['cts-testing.example.com']
             env.master = env.hosts[0]
 
 #. In the fabfile, add the new environment to ``SERVER_ENVIRONMENTS`` near the top::
@@ -94,7 +93,7 @@ at ``cts-testing.caktusgroup.com``.
 
         environment: testing
 
-        domain: cts-testing.caktusgroup.com
+        domain: cts-testing.example.com
 
         repo:
           url: git@github.com:theirc/CTS.git
@@ -144,19 +143,19 @@ at ``cts-testing.caktusgroup.com``.
             newrelic_license_key: zzzzz
 
             # Iraq:
-            ONA_DOMAIN_IQ: ona-staging.caktusgroup.com
+            ONA_DOMAIN_IQ: ona-staging.example.com
             ONA_API_ACCESS_TOKEN_IQ: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
             ONA_PACKAGE_FORM_ID_IQ: 4
             ONA_DEVICEID_VERIFICATION_FORM_ID_IQ: 5
 
             # Jordan:
-            ONA_DOMAIN_JO: ona-staging.caktusgroup.com
+            ONA_DOMAIN_JO: ona-staging.example.com
             ONA_API_ACCESS_TOKEN_JO: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
             ONA_PACKAGE_FORM_ID_JO: 4
             ONA_DEVICEID_VERIFICATION_FORM_ID_JO: 5
 
             # Turkey:
-            ONA_DOMAIN_TR: ona-staging.caktusgroup.com
+            ONA_DOMAIN_TR: ona-staging.example.com
             ONA_API_ACCESS_TOKEN_TR: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
             ONA_PACKAGE_FORM_ID_TR: 4
             ONA_DEVICEID_VERIFICATION_FORM_ID_TR: 5
@@ -164,7 +163,7 @@ at ``cts-testing.caktusgroup.com``.
         # Uncomment and update username/password to enable HTTP basic auth
         # Comment out to enable access to the public to the site
         http_auth:
-            caktus: abc123
+            testuser: testpass
 
         github_deploy_key: |
             -----BEGIN RSA PRIVATE KEY-----

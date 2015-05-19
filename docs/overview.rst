@@ -37,7 +37,7 @@ e.g. ``conf/pillar/staging/env.sls`` might contain::
 
     environment: staging
 
-    domain: cts-staging.caktusgroup.com
+    domain: cts-staging.example.com
 
     repo:
       url: git@github.com:theirc/CTS.git

@@ -61,9 +61,7 @@ How to check that backups are working
     -----BEGIN PGP MESSAGE-----
     Version: GnuPG v1.4.11 (GNU/Linux)
 
-* Get access to the GPG keypair used for the backups.  (Someone on the project can
-  share them via Lastpass.)  The Lastpass entry is named "Caktus Admin GPG Key Note".
-  Read the comments on the Lastpass entry for instructions to add the keypair to
+* Get access to the GPG keypair used for the backups.  Add the keypair to
   your GPG keypair.
 
 * Decrypt the file::
