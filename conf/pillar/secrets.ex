@@ -4,23 +4,21 @@ secrets:
     newrelic_license_key: XXXXXX
 # Uncomment if using celery worker configuration
 #     BROKER_PASSWORD: XXXXXX
-# Only define MYSQL_PASSWORD if you need MySQL for migrations
-#     MYSQL_PASSWORD: XXXXXX
 
     # Iraq:
-    ONA_DOMAIN_IQ: ona-staging.caktusgroup.com
+    ONA_DOMAIN_IQ: ona-staging.example.com
     ONA_API_ACCESS_TOKEN_IQ: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
     ONA_PACKAGE_FORM_ID_IQ: 4
     ONA_DEVICEID_VERIFICATION_FORM_ID_IQ: 5
 
     # Jordan:
-    ONA_DOMAIN_JO: ona-staging.caktusgroup.com
+    ONA_DOMAIN_JO: ona-staging.example.com
     ONA_API_ACCESS_TOKEN_JO: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
     ONA_PACKAGE_FORM_ID_JO: 4
     ONA_DEVICEID_VERIFICATION_FORM_ID_JO: 5
 
     # Turkey:
-    ONA_DOMAIN_TR: ona-staging.caktusgroup.com
+    ONA_DOMAIN_TR: ona-staging.example.com
     ONA_API_ACCESS_TOKEN_TR: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
     ONA_PACKAGE_FORM_ID_TR: 4
     ONA_DEVICEID_VERIFICATION_FORM_ID_TR: 5
