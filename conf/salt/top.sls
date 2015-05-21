@@ -15,7 +15,6 @@ base:
     - project.worker.beat
     - project.web.balancer
     - project.nginx
-    - project.docserver
     - project.db
     - project.queue
     - project.cache
