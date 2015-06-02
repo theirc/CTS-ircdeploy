@@ -27,23 +27,17 @@ INSTANCES = projects['instances'].keys()  # e.g. 'iraq', 'turkey'
 
 
 @task
-def testing():
-    env.environment = 'testing'
-    env.hosts = ['ec2-54-146-90-35.compute-1.amazonaws.com']
-
-
-@task
 def staging():
     env.environment = 'staging'
-    env.hosts = ['cts-staging.rescue.org']
+    # This hostname for our own use to connect to the server to manage it.
+    env.hosts = ['ec2-54-86-123-211.compute-1.amazonaws.com']
 
 
 @task
 def production():
     env.environment = 'production'
     # This hostname for our own use to connect to the server to manage it.
-    # IRC might choose to use whatever domain they want for the web site.
-    env.hosts = ['cts.rescue.org']
+    env.hosts = ['ec2-54-77-174-184.eu-west-1.compute.amazonaws.com']
 
 
 @task
