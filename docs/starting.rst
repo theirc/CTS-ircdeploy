@@ -8,6 +8,11 @@ This is a step-by-step guide to start administering IRC's CTS servers.
     git clone https://github.com/theirc/CTS-ircdeploy.git
     cd CTS-ircdeploy/
 
+Or if you'll be contributing to the repository::
+
+    git clone git@github.com:theirc/CTS-ircdeploy.git
+    cd CTS-ircdeploy/
+
 #. To setup your local environment you should create a virtualenv and install the necessary requirements::
 
      mkvirtualenv cts-ircdeploy

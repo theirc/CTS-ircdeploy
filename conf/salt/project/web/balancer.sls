@@ -12,6 +12,7 @@ http_firewall:
     - names:
       - '80'
       - '443'
+      - '8088'
     - enabled: true
 
 public_dir:

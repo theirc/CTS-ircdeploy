@@ -3,5 +3,5 @@ environment: staging
 domain: cts-staging.rescue.org
 
 repo:
-  url: git@github.com:theirc/CTS.git
+  url: https://github.com/theirc/CTS-project.git
   branch: origin/develop
