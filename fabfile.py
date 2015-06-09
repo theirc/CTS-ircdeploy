@@ -30,6 +30,7 @@ INSTANCES = projects['instances'].keys()  # e.g. 'iraq', 'turkey'
 def staging():
     env.environment = 'staging'
     # This hostname for our own use to connect to the server to manage it.
+    # To change the public domain, see conf/pillar/<envname>/env.sls
     env.hosts = ['ec2-54-86-123-211.compute-1.amazonaws.com']
 
 
@@ -37,6 +38,7 @@ def staging():
 def production():
     env.environment = 'production'
     # This hostname for our own use to connect to the server to manage it.
+    # To change the public domain, see conf/pillar/<envname>/env.sls
     env.hosts = ['ec2-54-77-174-184.eu-west-1.compute.amazonaws.com']
 
 
