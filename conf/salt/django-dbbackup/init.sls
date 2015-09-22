@@ -26,12 +26,12 @@ django-dbbackup:
       environment: "{{ pillar['environment'] }}"
       domain: "{{ pillar['domain'] }}"
       
-{% for instance in salt['pillar.get']('instances') %}
-set_db_privilages_{{instance}}:
-  cmd.run:
-    - name: psql cts_{{ instance }} -c 'GRANT SELECT ON spatial_ref_sys TO cts_{{ instance }};'
-    - user: postgres
-{% endfor %}
+#{% for instance in salt['pillar.get']('instances') %}
+#set_db_privilages_{{instance}}:
+#  cmd.run:
+#    - name: psql cts_{{ instance }} -c 'GRANT SELECT ON spatial_ref_sys TO cts_{{ instance }};'
+#    - user: postgres
+#{% endfor %}
 
 python-gnupg:
   pip.installed:     

@@ -1,4 +1,6 @@
 import os
+from pprint import pprint
+import re
 import tempfile
 from fabric.context_managers import cd
 from fabric.contrib.files import exists
@@ -52,6 +54,7 @@ def instance(name):
     # and cts/settings/staging.py.
     env.db_name = 'cts_%s' % env.instance
     env.db_owner = 'cts_%s' % env.instance
+    env.settings = '{0}.settings.{1}'.format(PROJECT_NAME, env.instance)
 
 
 @task
@@ -166,6 +169,7 @@ def salt(cmd):
     """Run arbitrary salt commands."""
     print("Detailed output will be on the remote system in /tmp/salt.out.")
     sudo("LC_ALL=en_US.UTF-8 salt-call --local --log-level=error --out-file=/tmp/salt.out {0}".format(cmd))
+    # sudo("LC_ALL=en_US.UTF-8 salt-call --local --log-level=error {0}".format(cmd))
 
 
 @task
@@ -189,6 +193,30 @@ def justdeploy():
     require('environment')
     salt('state.sls project.repo')
 
+
+@task
+def printenv():
+    """Print the env in which we run Django processes"""
+    pprint(getenv())
+
+
+def getenv():
+    """Return a dictionary containing the environment variables that will
+    be set when we run Django processes on the server"""
+    require('environment')
+    require('instance', provided_by='instance')
+    command = u"DJANGO_SETTINGS_MODULE={0} " \
+              u"/var/www/{1}/run.sh printenv".format(env.settings, PROJECT_NAME)
+    out = sudo(command, user=PROJECT_NAME)
+    dictionary = dict([line.split('=', 1) for line in out.splitlines()])
+    # Remove some artifacts of our logging into the server and running printenv using sudo
+    for name in ['TERM', 'SHLVL', 'LESS', 'SUDO_USER', 'SUDO_UID', 'SUDO_COMMAND', 'SUDO_GID',
+                 'MAIL', '_', 'PS1']:
+        if name in dictionary:
+            del dictionary[name]
+    return dictionary
+
+
 @task
 def manage_run(command):
     """
@@ -197,9 +225,8 @@ def manage_run(command):
     require('environment')
     require('instance', provided_by='instance')
     # Setup the call
-    settings = '{0}.settings.{1}'.format(PROJECT_NAME, env.instance)
-    manage_sh = u"DJANGO_SETTINGS_MODULE={0} /var/www/{1}/manage.sh ".format(settings,PROJECT_NAME)
-    sudo(manage_sh + command, user=PROJECT_NAME)
+    manage_sh = u"DJANGO_SETTINGS_MODULE={0} /var/www/{1}/manage.sh ".format(env.settings, PROJECT_NAME)
+    return sudo(manage_sh + command, user=PROJECT_NAME)
 
 @task
 def manage_shell():
@@ -232,113 +259,109 @@ def db_exists(dbname):
 
 
 @task
-def db_dump(file):
+def print_dsn():
+    pprint(get_dsn())
+
+
+def get_dsn():
     """
-    Dump an instance's database to a remote file.
+    Return the database settings for the currently selected environment
+    in DSN syntax. That's a single string with space-separated settings, e.g.
 
-    Example:
+        dbname='foo' host='example.com' port='1234'
 
-      `fab staging instance:iraq db_dump:/tmp/staging_iraq.dump`
-
-    dumps to staging_iraq.dump
+    etc etc.
     """
     require('environment', provided_by=SERVER_ENVIRONMENTS)
     require('instance', provided_by='instance')
-    remote_file = file
 
-    if files.exists(file):
-        if not confirm("Remote file {file} exists and will be overwritten.  Okay?"
-                .format(file=remote_file)):
-            abort("ERROR: aborting")
+    if not hasattr(env, 'dsn'):
+        # Get DSN by running sqldsn on the server with the current settings.
+        # If host='' on the server, change it to the remote hostname so we
+        # can access it from here.  Also fill in the default port.
+        env.dsn = manage_run('sqldsn --quiet')\
+            .replace("host=''", "host='{HOST}'".format(HOST=env.hosts[0]))\
+            .replace("port=''", "port='5432'")
+    return env.dsn
 
-    # Don't need remote DB user and password because we're going to run pg_dump as user postgres
-    sudo('pg_dump --format=custom --file={outputfile} {dbname}'
-         .format(dbname=env.db_name, outputfile=remote_file),
-         user='postgres')
-    print("Database from {environment} {instance} has been dumped to remote file {file}"
-          .format(environment=env.environment, instance=env.instance, file=remote_file))
+
+def get_parm_from_dsn(dsn, parm):
+    """
+    Given a DSN (see ``get_dsn``) and the name of one of the parameters
+    from it, return the value of that parameter. If that parameter is not
+    found, fails hard.
+    """
+    regex = re.compile(parm + r"='([^']*)'")
+    m = regex.search(dsn)
+    if not m:
+        abort("No match for %s in %s" % (regex.pattern, dsn))
+    return regex.search(dsn).group(1)
+
+
+def get_dbname_from_dsn():
+    """
+    Return the DBNAME from the server instance's DSN
+    """
+    return get_parm_from_dsn(get_dsn(), 'dbname')
+
+
+def get_dsn_for_database(dbname):
+    """
+    Return the DSN tweaked to connect to the named database.
+    :param dbname:
+    :return:
+    """
+    return get_dsn().replace("dbname='%s'" % get_dbname_from_dsn(),
+                             "dbname='%s'" % dbname)
+
+
+# It's not documented, but at least some Postgres commmands let you give the DSN as
+# the value of the "--dbname" option.
 
 
 @task
-def db_restore(file):
+def dump_to_local(file):
     """
-    Restore a remote DB dump file to a remote instance's database.
-
-    This will rename the existing database to {previous_name}_bak
-    and create a completely new database with what's in the dump.
-
-    If there's already a backup database, the restore will fail.
-
-    Example:
-
-      `fab staging instance:iraq db_restore:/tmp/staging_iraq.dump`
-
-    :param file: The remote file to restore.
+    Dump an instance's database to a local file.
+    :param file:
+    :return:
     """
     require('environment', provided_by=SERVER_ENVIRONMENTS)
     require('instance', provided_by='instance')
+    local_file = file
 
-    renamed = False
-    restored = False
+    dsn = get_dsn()
+    local('pg_dump --format=custom --file={local_file} "{DSN}"'.format(local_file=local_file, DSN=dsn))
 
-    if not files.exists(file):
-        abort("Remote file {file} does not exist".format(file=file))
 
-    try:
-        if db_exists(env.db_name):
-            # Rename existing DB to backup
-            db_backup = '{dbname}_bak'.format(dbname=env.db_name)
-            if db_exists(db_backup):
-                if confirm("There's already a database named {db_backup}. Replace with new backup?"
-                        .format(db_backup=db_backup)):
-                    sudo('dropdb {db_backup}'.format(db_backup=db_backup),
-                         user='postgres')
-                else:
-                    abort("ERROR: There's already a database named {db_backup}. "
-                          "Restoring would clobber it."
-                          .format(db_backup=db_backup))
-            sudo('psql -c "ALTER DATABASE {dbname} RENAME TO {db_backup}"'
-                 .format(dbname=env.db_name, db_backup=db_backup),
-                 user='postgres')
-            renamed = True
-            print("Renamed {dbname} to {db_backup}".format(dbname=env.db_name, db_backup=db_backup))
+@task
+def restore_from_local(file, new_dbname):
+    """
+    Restore a local postgres dump file to an instance's database.
 
-        remote_file = file
+    The database should have been created already, and the database
+    user in the Django settings should have access to it.
 
-        # Create new, very empty database.
-        # * We can't use --create on the pg_restore because that will always restore to whatever
-        #   db name was saved in the dump file, and we don't want to be restricted that way.
-        # * Any extensions the backed-up database had will be included in the restore, so we
-        #   don't need to enable them now.
+    Also, any extensions must ALREADY have been created in the
+    database, because only superusers can create extensions in a database
+    and typically the user we've configured on the Django server is not
+    a superuser.
 
-        # If these parameters change, also change the parameters in conf/salt/project/db/init.sls
-        # (TODO: we could use the output of psql -l to copy most of these settings from the
-        # existing database.)
-        sudo('createdb --encoding UTF8 --lc-collate=en_US.UTF-8 '
-             '--lc-ctype=en_US.UTF-8 --template=template0 --owner {owner} {dbname}'
-             .format(dbname=env.db_name, owner=env.db_owner),
-             user='postgres')
+    And, the ownership of the extensions must be the same as the
+    database owner...
+    """
+    require('environment', provided_by=SERVER_ENVIRONMENTS)
+    require('instance', provided_by='instance')
+    local_file = file
+    # Restore to it
+    dsn_for_new_db = get_dsn_for_database(new_dbname)
+    os.environ['PGPASSWORD'] = get_parm_from_dsn(dsn_for_new_db, 'password')
+    local('pg_restore'
+          ' --no-owner'
+          ' --no-acl'
+          ' --dbname="{DSN}"'
+          ' {filename}'.format(
+        DSN=dsn_for_new_db,
+        filename=local_file),
+    )
 
-        # Don't need remote DB user and password because we're going to
-        # run pg_restore as user postgres
-        sudo('pg_restore --dbname={dbname} {filename}'
-             .format(dbname=env.db_name, filename=remote_file),
-             user='postgres')
-        restored = True
-
-        # Run ANALYZE on the db to help Postgres optimize how it accesses it
-        sudo('psql {dbname} -c ANALYZE'.format(dbname=env.db_name),
-             user='postgres')
-
-        print("Database for {environment} {instance} has been restored from remote file {file}"
-              .format(environment=env.environment, instance=env.instance, file=remote_file))
-    finally:
-        if renamed and not restored:
-            print("Error occurred after renaming current database, trying to rename it back")
-            if db_exists(env.db_name):
-                # We already created the new db, but restore failed; delete it
-                sudo('dropdb {dbname}'.format(dbname=env.dbname), user='postgres')
-            sudo('psql -c "ALTER DATABASE {db_backup} RENAME TO {dbname}"'
-                 .format(dbname=env.db_name, db_backup=db_backup),
-                 user='postgres')
-            print("Successfully put back the original database.")

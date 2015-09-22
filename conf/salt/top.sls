@@ -15,8 +15,9 @@ base:
     - project.worker.beat
     - project.web.balancer
     - project.nginx
-    - project.db
     - project.queue
     - project.cache
     - project.swap
     - django-dbbackup
+    - no_mysql_server
+    - no_postgres_server
