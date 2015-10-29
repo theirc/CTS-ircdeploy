@@ -9,6 +9,7 @@ base:
     - salt.minion
     - newrelic_sysmon
     - project.broker
+    - project.postgres
     - project.web.app
     - project.newrelic_webmon
     - project.worker.default
@@ -19,5 +20,4 @@ base:
     - project.cache
     - project.swap
     - django-dbbackup
-    - no_mysql_server
-    - no_postgres_server
+    - no_mysql
