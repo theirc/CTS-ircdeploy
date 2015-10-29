@@ -32,7 +32,6 @@ pip_requirements:
     - upgrade: true
     - require:
       - virtualenv: venv
-      - pkg: mysql-packages
 
 project_path:
   file.managed:

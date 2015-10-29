@@ -9,14 +9,15 @@ base:
     - salt.minion
     - newrelic_sysmon
     - project.broker
+    - project.postgres
     - project.web.app
     - project.newrelic_webmon
     - project.worker.default
     - project.worker.beat
     - project.web.balancer
     - project.nginx
-    - project.db
     - project.queue
     - project.cache
     - project.swap
     - django-dbbackup
+    - no_mysql

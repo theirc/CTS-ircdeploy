@@ -8,4 +8,4 @@ repo:
 
 # Addtional public environment variables to set for the project
 env:
-  FOO: BAR
+  DB_HOST: irc-ire-prod.cq1sxobbggkx.eu-west-1.rds.amazonaws.com
