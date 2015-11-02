@@ -28,7 +28,6 @@ gunicorn_{{ instance }}_conf:
     - mode: 600
     - template: jinja
     - context:
-        log_dir: "{{ vars.log_dir }}/{{ instance }}"
         instance: {{ instance }}
         newrelic_config_file: "{{ vars.services_dir }}/newrelic-app.ini"
         settings: "{{ pillar['project_name'] }}.settings.{{ instance }}"
@@ -46,7 +45,6 @@ gunicorn_{{ instance }}_process:
     - restart: True
     - require:
       - file: gunicorn_{{ instance }}_conf
-      - file: log_dir_{{ instance }}
 
 migrate_{{ instance }}:
   cmd.run:

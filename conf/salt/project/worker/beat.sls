@@ -15,7 +15,6 @@ beat_{{ instance }}_conf:
     - mode: 600
     - template: jinja
     - context:
-        log_dir: "{{ vars.log_dir }}/{{ instance }}"
         settings: "{{ pillar['project_name'] }}.settings.{{ instance }}"
         virtualenv_root: "{{ vars.venv_dir }}"
         newrelic_config_file: "{{ vars.services_dir }}/newrelic-app.ini"
@@ -25,7 +24,6 @@ beat_{{ instance }}_conf:
         flags: "--schedule={{ vars.path_from_root('celerybeat-' + instance + '-schedule.db') }} --pidfile={{ vars.path_from_root('celerybeat-' + instance + '.pid') }} --loglevel=INFO"
     - require:
       - pip: supervisor
-      - file: log_dir
       - pip: pip_requirements
     - watch_in:
       - cmd: supervisor_update

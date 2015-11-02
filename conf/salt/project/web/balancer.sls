@@ -109,7 +109,6 @@ nginx_conf:
     - template: jinja
     - context:
         public_root: "{{ vars.public_dir }}"
-        log_dir: "{{ vars.log_dir }}"
         ssl_dir: "{{ vars.ssl_dir }}"
         domain: "{{ pillar['domain'] }}"
         servers:
@@ -119,7 +118,6 @@ nginx_conf:
         {% endif %}
     - require:
       - pkg: nginx
-      - file: log_dir
       - file: ssl_dir
       - cmd: ssl_cert
       {%- if 'http_auth' in pillar %}
