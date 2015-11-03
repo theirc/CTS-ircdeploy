@@ -18,7 +18,6 @@ include:
     - mode: 600
     - template: jinja
     - context:
-        log_dir: "{{ vars.log_dir }}/{{ instance }}"
         newrelic_config_file: "{{ vars.services_dir }}/newrelic-app.ini"
         settings: "{{ pillar['project_name'] }}.settings.{{ instance }}"
         virtualenv_root: "{{ vars.venv_dir }}"
@@ -38,6 +37,5 @@ include:
     - restart: True
     - require:
       - file: {{ instance }}_conf
-      - file: log_dir_{{ instance }}
 
 {% endfor %}

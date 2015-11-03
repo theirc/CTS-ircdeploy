@@ -4,6 +4,7 @@ base:
     - sudo
     - sshd
     - sshd.github
+    - papertrail
     - locale.utf8
     - project.devs
     - salt.minion

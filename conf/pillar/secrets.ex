@@ -31,6 +31,9 @@ secrets:
     DBBACKUP_GPG_RECIPIENT: 'GPG user id (short hex string)'
     DBBACKUP_GPG_ALWAYS_TRUST: 'True'
 
+#    PAPERTRAIL_HOST: 'hostname'
+#    PAPERTRAIL_PORT: 'portnumber'
+
 instances:
   jordan:
     # If these are defined, allow readonly access to an instance's database

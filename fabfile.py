@@ -218,6 +218,16 @@ def getenv():
 
 
 @task
+def purge_queue():
+    """
+    Empty the instance's celery queue
+    """
+    require('environment')
+    require('instance', provided_by='instance')
+    sudo("rabbitmqctl purge_queue -p cts_{instance} celery".format(**env))
+
+
+@task
 def manage_run(command):
     """
     Run a Django management command on the remote server.
