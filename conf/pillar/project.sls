@@ -4,6 +4,9 @@ python_version: 2.7
 
 postgres_extensions: [postgis]
 
+# Client postgres should match postgres version on the RDS server
+postgres_version: 9.4
+
 instances:
   turkey:
     name: Turkey

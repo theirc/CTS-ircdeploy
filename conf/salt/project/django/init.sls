@@ -23,7 +23,6 @@ manage:
     - require:
       - pip: pip_requirements
       - file: project_path
-      - file: log_dir
 
 # Helper to run a shell command in the virtual environment
 # Must not be world-readable, to protect passwords
@@ -43,4 +42,3 @@ run_file:
     - require:
       - pip: pip_requirements
       - file: project_path
-      - file: log_dir
