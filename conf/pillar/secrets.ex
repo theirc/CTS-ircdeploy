@@ -25,12 +25,6 @@ secrets:
     ONA_PACKAGE_FORM_ID_TR: 4
     ONA_DEVICEID_VERIFICATION_FORM_ID_TR: 5
 
-    DBBACKUP_S3_BUCKET: 'bucket-name'
-    DBBACKUP_S3_ACCESS_KEY: 'AWS access-key'
-    DBBACKUP_S3_SECRET_KEY: 'AWS secret-key'
-    DBBACKUP_GPG_RECIPIENT: 'GPG user id (short hex string)'
-    DBBACKUP_GPG_ALWAYS_TRUST: 'True'
-
 #    PAPERTRAIL_HOST: 'hostname'
 #    PAPERTRAIL_PORT: 'portnumber'
 

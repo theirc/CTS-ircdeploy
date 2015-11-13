@@ -246,13 +246,3 @@ def manage_shell():
 @task
 def collectstatic():
     manage_run('collectstatic --noinput')
-
-
-@task
-def db_backup():
-    """
-    Backup the database to S3 just like the nightly cron job
-    """
-    require('environment')
-    require('instance', provided_by='instance')
-    manage_run("dbbackup --encrypt")
