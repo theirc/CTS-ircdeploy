@@ -8,9 +8,9 @@ Welcome to CTS-ircdeploy's documentation!
 
 .. image:: _static/logo.gif
 
-This project contains the deployment architecture used by the 
-`International Rescue Committee (IRC)`_ for the `CTS`_ project. While this 
-repository is specific to IRC's instance of CTS, the architecture may be used 
+This project contains the deployment architecture used by the
+`International Rescue Committee (IRC)`_ for the `CTS`_ project. While this
+repository is specific to IRC's instance of CTS, the architecture may be used
 as an example or reference for alternative deployments. To explore other open
 source IRC projects, please see IRC's `GitHub`_ account.
 
@@ -36,6 +36,7 @@ Contents:
    ona
    backups
    db_access
+   releases
 
 Indices and tables
 ==================
@@ -43,4 +44,3 @@ Indices and tables
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
-
