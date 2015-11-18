@@ -86,7 +86,7 @@ Supervisor
 ~~~~~~~~~~
 
 Supervisor is a daemon that manages background processes.
-Each process is configured by a file in /etc/supervisor/conf.d,
+Each process is configured by a file in ``/etc/supervisor/conf.d``,
 and supervisor ensures that each process is started and
 continues to run.
 

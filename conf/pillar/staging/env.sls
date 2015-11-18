@@ -4,7 +4,7 @@ domain: cts-staging.rescue.org
 
 
 repo:
-  url: https://github.com/theirc/CTS-project.git
+  url: https://github.com/theirc/CTS.git
   branch: origin/develop
 
 env:

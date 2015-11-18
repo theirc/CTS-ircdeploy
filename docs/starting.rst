@@ -56,7 +56,7 @@ Or if you'll be contributing to the repository::
 
      fab staging get_secrets
 
-   After running this, you should have a local file `conf/pillar/staging/secrets.sls`
+   After running this, you should have a local file ``conf/pillar/staging/secrets.sls``
    with the passwords, keys, etc that aren't kept in git.
 
 At this point, you should be able to do any of the needed :doc:`administration tasks <tasks>`.

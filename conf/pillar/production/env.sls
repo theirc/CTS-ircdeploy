@@ -3,7 +3,7 @@ environment: production
 domain: cts.rescue.org
 
 repo:
-  url: https://github.com/theirc/CTS-project.git
+  url: https://github.com/theirc/CTS.git
   branch: origin/master
 
 # Addtional public environment variables to set for the project
