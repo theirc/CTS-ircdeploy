@@ -17,7 +17,7 @@ Update secrets
 
 If you need to update any secrets, be sure to first get the latest secrets
 file from the relevant server (see above). Then you can edit your local copy
-(e.g. `conf/pillar/production/secrets.sls` or `conf/pillar/staging/secrets.sls`)
+(e.g. ``conf/pillar/production/secrets.sls`` or ``conf/pillar/staging/secrets.sls``)
 and deploy (see next item).
 
 Deploy new code
@@ -34,19 +34,19 @@ Running a deploy does several things:
    correct, and generally check and update the provisioning on the server.
    This uses `Salt <https://salt.readthedocs.org/en/latest/>`_.
 
-#. Sync all the configuration files under `conf` from your local system
+#. Sync all the configuration files under ``conf`` from your local system
    to the server. This makes it easier to test deploy changes without having
    to continually commit possibly broken code first.
 
 #. Checkout the source code from github. It'll use whatever branch name is
-   set in the local `conf/pillar/<environment>/env.sls` file, so you can test
+   set in the local ``conf/pillar/<environment>/env.sls`` file, so you can test
    by editing that file locally and deploying.  But the actual source code
    you want to test has to be pushed to github.  (By "source code" here, we
    basically mean everything in the git repository that is
-   outside of the `conf` directory.)
+   outside of the ``conf`` directory.)
 
-#. Run the usual Django deploy-time commands such as `collectstatic` and
-   `syncdb --migrate`.
+#. Run the usual Django deploy-time commands such as ``collectstatic`` and
+   ``syncdb --migrate``.
 
 #. Restart the servers
 

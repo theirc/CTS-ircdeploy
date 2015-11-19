@@ -64,7 +64,7 @@ For the purposes of this documentation, we'll assume we're adding
 a new environment named ``testing``, which will be accessed
 at ``cts-testing.caktusgroup.com``.
 
-#. Edit the fabfile (`fabfile.py` in the top directory).
+#. Edit the fabfile (``fabfile.py`` in the top directory).
    Create a new task near the top, modeled
    on the existing tasks like 'production'.  Fill in
    the new server's hostname or IP address.  Like this::
@@ -109,8 +109,8 @@ at ``cts-testing.caktusgroup.com``.
    the private key. See the
    `Github docs on managing deploy keys <https://help.github.com/articles/managing-deploy-keys>`_
 
-   The private key should be added to `conf/pillar/<environment>/secrets.sls`` under the
-   label `github_deploy_key`::
+   The private key should be added to ``conf/pillar/<environment>/secrets.sls`` under the
+   label ``github_deploy_key``::
 
     github_deploy_key: |
       -----BEGIN RSA PRIVATE KEY-----
@@ -136,7 +136,7 @@ at ``cts-testing.caktusgroup.com``.
    the values will be the password. As with all password usage please pick a strong
    password.
 
-   Here's what conf/pillar/testing/secrets.sls might look like::
+   Here's what ``conf/pillar/testing/secrets.sls`` might look like::
 
         secrets:
             DB_PASSWORD: xxxxxx
@@ -146,20 +146,20 @@ at ``cts-testing.caktusgroup.com``.
             # Iraq:
             ONA_DOMAIN_IQ: ona-staging.caktusgroup.com
             ONA_API_ACCESS_TOKEN_IQ: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-            ONA_PACKAGE_FORM_ID_IQ: 4
-            ONA_DEVICEID_VERIFICATION_FORM_ID_IQ: 5
+            ONA_PACKAGE_FORM_IDS_IQ: 4
+            ONA_DEVICEID_VERIFICATION_FORM_ID_IQ: 52
 
             # Jordan:
             ONA_DOMAIN_JO: ona-staging.caktusgroup.com
             ONA_API_ACCESS_TOKEN_JO: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-            ONA_PACKAGE_FORM_ID_JO: 4
-            ONA_DEVICEID_VERIFICATION_FORM_ID_JO: 5
+            ONA_PACKAGE_FORM_IDS_JO: 3;14
+            ONA_DEVICEID_VERIFICATION_FORM_ID_JO: 35
 
             # Turkey:
             ONA_DOMAIN_TR: ona-staging.caktusgroup.com
             ONA_API_ACCESS_TOKEN_TR: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-            ONA_PACKAGE_FORM_ID_TR: 4
-            ONA_DEVICEID_VERIFICATION_FORM_ID_TR: 5
+            ONA_PACKAGE_FORM_IDS_TR: 5;6;23
+            ONA_DEVICEID_VERIFICATION_FORM_ID_TR: 65
 
         # Uncomment and update username/password to enable HTTP basic auth
         # Comment out to enable access to the public to the site
@@ -197,5 +197,5 @@ at ``cts-testing.caktusgroup.com``.
 
    If you want to test without merging the changes to master yet, then
    push the changes to some other branch, and edit your local copy of
-   `conf/pillar/testing/env.sls` to change the branch name to the one
+   ``conf/pillar/testing/env.sls`` to change the branch name to the one
    you're using.
