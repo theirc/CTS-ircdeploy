@@ -17,7 +17,7 @@ to access an Ona server, for the `IQ` instance::
     secrets:
       ONA_DOMAIN_IQ: ona.io # domain of your Ona instance
       ONA_API_ACCESS_TOKEN_IQ: changeme # API access token of a valid Ona User
-      ONA_PACKAGE_FORM_IDS_IQ: 23;5 # Semicolon-separated Form IDs for package/voucher tracking for this instance of the web application
+      ONA_FORM_IDS_IQ: 23;5 # Semicolon-separated Form IDs for package/voucher tracking for this instance of the web application
       ONA_DEVICEID_VERIFICATION_FORM_ID_IQ: changeme # Form ID for binding a device to a user for this instance of the web application
 
 Additional Forms

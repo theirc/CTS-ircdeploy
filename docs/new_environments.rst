@@ -146,19 +146,19 @@ at ``cts-testing.caktusgroup.com``.
             # Iraq:
             ONA_DOMAIN_IQ: ona-staging.caktusgroup.com
             ONA_API_ACCESS_TOKEN_IQ: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-            ONA_PACKAGE_FORM_IDS_IQ: 4
+            ONA_FORM_IDS_IQ: 4
             ONA_DEVICEID_VERIFICATION_FORM_ID_IQ: 52
 
             # Jordan:
             ONA_DOMAIN_JO: ona-staging.caktusgroup.com
             ONA_API_ACCESS_TOKEN_JO: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-            ONA_PACKAGE_FORM_IDS_JO: 3;14
+            ONA_FORM_IDS_JO: 3;14
             ONA_DEVICEID_VERIFICATION_FORM_ID_JO: 35
 
             # Turkey:
             ONA_DOMAIN_TR: ona-staging.caktusgroup.com
             ONA_API_ACCESS_TOKEN_TR: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-            ONA_PACKAGE_FORM_IDS_TR: 5;6;23
+            ONA_FORM_IDS_TR: 5;6;23
             ONA_DEVICEID_VERIFICATION_FORM_ID_TR: 65
 
         # Uncomment and update username/password to enable HTTP basic auth
