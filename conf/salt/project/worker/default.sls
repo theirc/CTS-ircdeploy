@@ -38,4 +38,12 @@ include:
     - require:
       - file: {{ instance }}_conf
 
+nightly-restart-{{ instance }}-celery:
+  cron.present:
+    - identifier: nightly-restart-{{ instance }}-celery
+    - user: root
+    - name: /usr/local/bin/supervisorctl restart {{ pillar['project_name'] }}-celery-{{ instance }}
+    - hour: 23
+    - minute: 30
+
 {% endfor %}
