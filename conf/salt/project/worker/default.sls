@@ -24,7 +24,7 @@ include:
         directory: "{{ vars.source_dir }}"
         name: "celery-{{ instance }}"
         command: "worker"
-        flags: "--loglevel=INFO -Q celery --concurrency={{ grains['num_cpus'] * 4 + 1 }}"
+        flags: "--loglevel=INFO -Q queue_{{ instance }} --concurrency=2"
     - require:
       - pip: supervisor
       - pip: pip_requirements
