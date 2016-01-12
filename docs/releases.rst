@@ -1,7 +1,7 @@
 Releases
 ========
 
-0.3 on Nov. 13, 2015
+0.3 on Jan. 12, 2016
 --------------------
 
 * Update Ona docs (#11)
