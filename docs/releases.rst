@@ -1,6 +1,15 @@
 Releases
 ========
 
+0.3 on Nov. 13, 2015
+--------------------
+
+* Update Ona docs (#11)
+* Update for voucher support (#12)
+* Restart celery nightly (#13)
+* Separate celery queues (#14). Requires CTS v0.7.0
+
+
 0.2 on Nov. 13, 2015
 --------------------
 
