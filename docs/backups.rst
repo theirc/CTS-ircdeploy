@@ -18,7 +18,7 @@ How to recover in the event of a lost server
 * Restore the desired RDS backup - this will create a new RDS instance containing
   the databases as of the last backup
 * Dump the CTS databases from the new RDS instance
-* Restore the CTS databases from those dumps to the live RDS instance
+* Restore the CTS databases from those dumps to the live RDS instance::
 
     $ fab production instance:[iraq|turkey|jordan] db_restore:/tmp/db.backup
 

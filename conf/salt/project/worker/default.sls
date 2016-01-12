@@ -24,7 +24,7 @@ include:
         directory: "{{ vars.source_dir }}"
         name: "celery-{{ instance }}"
         command: "worker"
-        flags: "--loglevel=INFO -Q celery --concurrency={{ grains['num_cpus'] * 4 + 1 }}"
+        flags: "--loglevel=INFO -Q queue_{{ instance }} --concurrency=2"
     - require:
       - pip: supervisor
       - pip: pip_requirements
@@ -37,5 +37,13 @@ include:
     - restart: True
     - require:
       - file: {{ instance }}_conf
+
+nightly-restart-{{ instance }}-celery:
+  cron.present:
+    - identifier: nightly-restart-{{ instance }}-celery
+    - user: root
+    - name: /usr/local/bin/supervisorctl restart {{ pillar['project_name'] }}-celery-{{ instance }}
+    - hour: 23
+    - minute: 30
 
 {% endfor %}

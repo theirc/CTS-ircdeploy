@@ -10,19 +10,19 @@ secrets:
     # Iraq:
     ONA_DOMAIN_IQ: ona-staging.caktusgroup.com
     ONA_API_ACCESS_TOKEN_IQ: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-    ONA_PACKAGE_FORM_ID_IQ: 4
+    ONA_FORM_IDS_IQ: 4
     ONA_DEVICEID_VERIFICATION_FORM_ID_IQ: 5
 
     # Jordan:
     ONA_DOMAIN_JO: ona-staging.caktusgroup.com
     ONA_API_ACCESS_TOKEN_JO: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-    ONA_PACKAGE_FORM_ID_JO: 4
+    ONA_FORM_IDS_JO: 3;4
     ONA_DEVICEID_VERIFICATION_FORM_ID_JO: 5
 
     # Turkey:
     ONA_DOMAIN_TR: ona-staging.caktusgroup.com
     ONA_API_ACCESS_TOKEN_TR: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-    ONA_PACKAGE_FORM_ID_TR: 4
+    ONA_FORM_IDS_TR: 4
     ONA_DEVICEID_VERIFICATION_FORM_ID_TR: 5
 
 #    PAPERTRAIL_HOST: 'hostname'

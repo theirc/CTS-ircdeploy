@@ -17,7 +17,7 @@ to access an Ona server, for the `IQ` instance::
     secrets:
       ONA_DOMAIN_IQ: ona.io # domain of your Ona instance
       ONA_API_ACCESS_TOKEN_IQ: changeme # API access token of a valid Ona User
-      ONA_PACKAGE_FORM_ID_IQ: changeme # Form ID for package tracking for this instance of the web application
+      ONA_FORM_IDS_IQ: 23;5 # Semicolon-separated Form IDs for package/voucher tracking for this instance of the web application
       ONA_DEVICEID_VERIFICATION_FORM_ID_IQ: changeme # Form ID for binding a device to a user for this instance of the web application
 
 Additional Forms
@@ -30,16 +30,16 @@ The components needed are:
   * a celery task to poll and consume form submissions
 
 
-One can look at the default Package Delivery Form configuration as a model::
+Here is a made-up example::
 
     # Django setting
-    ONA_PACKAGE_FORM_ID = os.environ.get('ONA_PACKAGE_FORM_ID', '')
+    ONA_MY_FORM_ID = os.environ.get('ONA_MY_FORM_ID', '')
 
     # Celery task
     @app.task
     def update_package_locations():
         """Updates the local database with new package tracking form submissions"""
-        form_id = settings.ONA_PACKAGE_FORM_ID
+        form_id = settings.ONA_MY_FORM_ID
         client = OnaApiClient()
         submissions = client.get_form_submissions(form_id)
         for data in submissions:
