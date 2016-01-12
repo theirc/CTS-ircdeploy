@@ -47,7 +47,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'CTS-ircdeploy'
-copyright = u'2015, International Rescue Committee'
+copyright = u'2015-6, International Rescue Committee'
 author = u'International Rescue Committee'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -55,7 +55,7 @@ author = u'International Rescue Committee'
 # built documents.
 #
 # The short X.Y version.
-version = '0.2'
+version = '0.3'
 # The full version, including alpha/beta/rc tags.
 release = '0.2'
 
