@@ -35,7 +35,6 @@ Contents:
    new_environments
    ona
    backups
-   db_access
    releases
 
 Indices and tables
