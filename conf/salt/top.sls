@@ -20,5 +20,4 @@ base:
     - project.queue
     - project.cache
     - project.swap
-    - django-dbbackup
     - no_mysql
