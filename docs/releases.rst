@@ -1,10 +1,12 @@
 Releases
 ========
 
-0.4 on Aug. 22, 2017
+0.4 on Sep. 29, 2017
 --------------------
 
 * Add ssh keys for maintenance and backup.
+* Document how to restore from backup (#16).
+
 
 0.3 on Jan. 12, 2016
 --------------------
