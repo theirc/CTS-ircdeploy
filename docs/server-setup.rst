@@ -112,8 +112,4 @@ Only one logical Rabbit MQ runs on a server.
 Postgres
 ~~~~~~~~
 
-Postgres is our primary database server.
-
-Postgres is started by an init.d script.
-
-Only one logical Postgres server runs on a server.
+Postgres is our primary database server. We use a PostgreSQL instance hosted on Amazon RDS.

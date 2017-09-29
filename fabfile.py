@@ -64,6 +64,13 @@ def ssh():
 
 
 @task
+def put_file(local_path):
+    """SCP a single file to the /tmp directory of the server."""
+    require('environment')
+    put(local_path=local_path, remote_path="/tmp")
+
+
+@task
 def sync():
     """Rysnc local states and pillar data to the master."""
     # Check for missing local secrets so that they don't get deleted
