@@ -18,14 +18,16 @@ When you need to restore a backup:
     $ git config --get remote.origin.url
     git@github.com:theirc/CTS-ircdeploy.git
 
-* List the files in the latest backup directory and find the most recent::
+* List the files in the latest backup directory and find the most recent backup file for each
+  instance (i.e. "iraq", "jordan", and "turkey")::
 
     $ backup_path=/mnt/rsnapshot/cts/daily.0/home/caktus-backup
-    $ ssh caktus-backup@backup.caktus.lan ls $backup_path | tail -1
+    $ ssh caktus-backup@backup.caktus.lan ls $backup_path/cts_iraq* | tail -1
+    cts_iraq.rescue.org-20170927.bz2
+    $ ssh caktus-backup@backup.caktus.lan ls $backup_path/cts_jordan* | tail -1
+    cts_jordan.rescue.org-20170927.bz2
+    $ ssh caktus-backup@backup.caktus.lan ls $backup_path/cts_turkey* | tail -1
     cts_turkey.rescue.org-20170927.bz2
-
-  That will list the latest 'turkey' dumpfile. We'll replace 'turkey' with 'iraq' and 'jordan' to
-  get a dumpfile for each of the 3 instances.
 
 * Copy those files your local directory::
 
@@ -46,7 +48,7 @@ When you need to restore a backup:
 
     $ dropdb cts
     $ createdb --template=template0 cts
-    $ psql cts -f cts_iraq > sql-import.log 2>&1
+    $ psql --quiet cts -f cts_iraq > sql-import.log 2>&1
 
   You can look through `sql-import.log` to view the output from that command. There will be a bunch
   of errors about missing relations and roles. It's OK to ignore them.
@@ -103,7 +105,7 @@ Bringing up a new site using the backup dump
     (env)cts@cts-staging$ export PGHOST=$DB_HOST PGPASSWORD=$DB_PASSWORD PGUSER=$DB_USER
     (env)cts@cts-staging$ dropdb cts_iraq
     (env)cts@cts-staging$ createdb cts_iraq
-    (env)cts@cts-staging$ psql cts_iraq -f /tmp/cts_iraq > /tmp/sql-import.log 2>&1
+    (env)cts@cts-staging$ psql --quiet cts_iraq -f /tmp/cts_iraq > /tmp/sql-import.log 2>&1
 
 * Review the sql-import.log. There will be lots of errors about missing roles, tables, etc, but that
   is OK. Now, run migrations::
