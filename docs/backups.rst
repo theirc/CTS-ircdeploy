@@ -134,9 +134,9 @@ Bringing up a new site using the backup dump
 * Finally clean up the dumps from the staging server and locally::
 
     user@cts-staging$ cd /tmp/
-    user@cts-staging$ sudo rm -f cts_*.rescue.org* sql-import.log
+    user@cts-staging$ sudo rm -f cts_* sql-import.log
     user@cts-staging$ logout
     Connection to ec2-54-86-123-211.compute-1.amazonaws.com closed.
 
     Done.
-    $ rm -f cts_*.rescue.org* sql-import.log
+    $ rm -f cts_* sql-import.log
